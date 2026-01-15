@@ -6,6 +6,12 @@
  }
 }
 
+@layer components{
+ .solidglass {
+    @apply bg-white/25 border border-white/6 rounded-2xl p-2 text-white backdrop-blur-sm shadow-lg;
+ }
+}
+
 @keyframes dancingbackground {
     0% {background-position: 0%;}
     25% {background-position: 50%;}

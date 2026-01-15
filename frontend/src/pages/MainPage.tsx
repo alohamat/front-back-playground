@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import useSound from "use-sound";
 
 import handbwl from "../assets/handbwl.png";
@@ -8,6 +9,7 @@ import scp from "../assets/SCP-067.mp3"
 
 export default function MainPage() {
   const [isSixSevening, setSixSevening] = useState(false);
+  const navigate = useNavigate();
   const [play, { stop }] = useSound(scp, {interrupt: true});
 
 
@@ -33,10 +35,13 @@ export default function MainPage() {
             <h1 className="text-4xl mb-15 text-red-600">67 KENDRICK IS LISTENING 67</h1>
           </div>
         ) : (
-          <h1 className="text-white text-5xl mb-15">Hello, world!</h1>
+          <div className="flex flex-col mb-15 gap-15">
+          <h1 className="text-white text-5xl">Hello, world!</h1>
+          <button className="glass cursor-pointer" onClick={() => navigate("/dashboard")}>Go to dashboard</button>
+          </div>
         )}
         <button
-          className="glass"
+          className="glass cursor-pointer fixed bottom-0"
           onClick={() => {
             setSixSevening(!isSixSevening); (isSixSevening ? stop() : play())
           }}

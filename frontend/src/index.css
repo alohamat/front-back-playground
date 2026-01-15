@@ -1,11 +1,46 @@
 @import "tailwindcss";
 
+@layer components{
+ .glass {
+    @apply bg-white/5 border border-white/6 rounded-2xl p-2 text-white backdrop-blur-sm shadow-lg;
+ }
+}
+
 @keyframes dancingbackground {
     0% {background-position: 0%;}
     25% {background-position: 50%;}
     50% {background-position: 100%;}
     75% {background-position: 50%;}
     100% {background-position: 0%;}
+}
+
+@keyframes wiggle {
+    0% {transform: translateY(55%);}
+    50% {transform: translateY(-55%);}
+    100% {transform: translateY(55%);}
+}
+@keyframes wiggle2 {
+    0% {transform: translateY(-55%);}
+    50% {transform: translateY(55%);}
+    100% {transform: translateY(-55%);}
+}
+
+@keyframes zooming {
+    0% {transform: scale(100%);}
+    50% {transform: scale(110%);}
+    100% {transform: scale(100%);}
+}
+
+.zooming {
+    animation: zooming 1s infinite linear;
+}
+
+.wiggle {
+    animation: wiggle 1s infinite linear;
+}
+
+.wiggle2 {
+    animation: wiggle2 1s infinite linear;
 }
 
 .animated-bg {

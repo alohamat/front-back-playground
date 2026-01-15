@@ -1,10 +1,15 @@
 import { useState } from "react";
+import useSound from "use-sound";
+
 import handbwl from "../assets/handbwl.png";
 import handbwr from "../assets/handbwr.png";
 import kid from "../assets/67kid.png"
+import scp from "../assets/SCP-067.mp3"
 
 export default function MainPage() {
   const [isSixSevening, setSixSevening] = useState(false);
+  const [play, { stop }] = useSound(scp, {interrupt: true});
+
 
   return (
     <div
@@ -33,7 +38,7 @@ export default function MainPage() {
         <button
           className="glass"
           onClick={() => {
-            setSixSevening(!isSixSevening);
+            setSixSevening(!isSixSevening); (isSixSevening ? stop() : play())
           }}
         >
           Press here to Six Seven!

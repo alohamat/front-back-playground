@@ -43,11 +43,11 @@ export default function Dashboard() {
             <strong className="">HTTP Methods</strong>
           </div>
           <div id="inside" className="flex flex-col gap-6">
-            <div>
-              Req body:
+            <div className="flex gap-2">
+              <p>Req body: </p>
               <input
                 type="text"
-                className="bg-white rounded w-fit"
+                className="bg-white text-black rounded w-fit"
                 onChange={(e) => {
                   setReqBody(e.target.value);
                 }}
@@ -55,13 +55,13 @@ export default function Dashboard() {
             </div>
             <div className="gap-6 flex">
               <button
-                className="size-15 rounded-full bg-indigo-600"
+                className="size-15 rounded-full bg-indigo-600 cursor-pointer"
                 onClick={handlePost}
               >
                 POST
               </button>
               <button
-                className="size-15 rounded-full bg-indigo-600"
+                className="size-15 rounded-full bg-indigo-600 cursor-pointer"
                 onClick={handleGet}
               >
                 GET

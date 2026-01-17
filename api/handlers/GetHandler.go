@@ -3,6 +3,7 @@ package handlers
 import (
 	"encoding/json"
 	"net/http"
+	"fmt"
 )
 
 func GetHandler(w http.ResponseWriter, r *http.Request) {
@@ -14,5 +15,6 @@ func GetHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 
+	fmt.Println("Got a GET")
 	json.NewEncoder(w).Encode(response{Message: "take your get"})
 }

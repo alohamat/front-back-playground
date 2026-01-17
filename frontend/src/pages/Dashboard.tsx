@@ -2,14 +2,24 @@ import { useState } from "react";
 import axios from "axios";
 
 export default function Dashboard() {
-  const [reqBody, setReqBody] = useState("");
+  interface RequestBody {
+    message: string;
+  }
+  interface ResponseBody {
+    message: string;
+  }
+
+  const [requestBody, setRequestBody] = useState<RequestBody>({ message: "" });
+  const [postResponse, setPostRes] = useState<ResponseBody | null>();
+  const [getResponse, setGetRes] = useState<ResponseBody | null>();
 
   async function handlePost() {
     try {
       const res = await axios.post("http://localhost:8080/postsum", {
-        data: reqBody,
+        data: requestBody.message,
       });
       console.log(res.data);
+      setPostRes(res.data);
     } catch (error: any) {
       console.error(error);
     }
@@ -18,6 +28,7 @@ export default function Dashboard() {
     try {
       const res = await axios.get("http://localhost:8080/getsum");
       console.log(res);
+      setGetRes(res.data);
     } catch (error: any) {
       console.error(error);
     }
@@ -43,15 +54,21 @@ export default function Dashboard() {
             <strong className="">HTTP Methods</strong>
           </div>
           <div id="inside" className="flex flex-col gap-6">
-            <div className="flex gap-2">
-              <p>Req body: </p>
-              <input
-                type="text"
-                className="bg-white text-black rounded w-fit"
-                onChange={(e) => {
-                  setReqBody(e.target.value);
-                }}
-              />
+            <div id="insidetop" className="flex">
+              <article>
+                <p className="text-zinc-300">POST request body:</p>
+                <input
+                  type="text"
+                  className="bg-transparent border-2 border-zinc-400 text-white outline-0 rounded w-fit"
+                  onChange={(e) => {
+                    setRequestBody({ message: e.target.value });
+                  }}
+                />
+              </article>
+              <article className="ml-2 mt-2">
+                <p>POST Returned: {postResponse && (postResponse.message)}</p>
+                <p>GET Returned: {getResponse && (getResponse.message)}</p>
+              </article>
             </div>
             <div className="gap-6 flex">
               <button
